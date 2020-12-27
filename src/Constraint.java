@@ -20,10 +20,10 @@ public class Constraint {
         this.maxGPA = maxGPA;
     }
 
-    public boolean check(LocalDate date) {
+    public boolean checkDate(int year) {
         int minYear = minDate.getYear();
         int maxYear = maxDate.getYear();
-        int year = date.getYear();
+//        int year = date.getYear();
         if(minYear <= year) {
             return maxYear >= year;
         }
