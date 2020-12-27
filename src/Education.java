@@ -30,4 +30,44 @@ public class Education implements Comparable<Education> {
         }
         return this.endDate.isAfter(o.endDate)? -1: 1;
     }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getInstitutionName() {
+        return institutionName;
+    }
+
+    public void setInstitutionName(String institutionName) {
+        this.institutionName = institutionName;
+    }
+
+    public String getEducationLevel() {
+        return educationLevel;
+    }
+
+    public void setEducationLevel(String educationLevel) {
+        this.educationLevel = educationLevel;
+    }
+
+    public double getMeanGPA() {
+        return meanGPA;
+    }
+
+    public void setMeanGPA(double meanGPA) {
+        this.meanGPA = meanGPA;
+    }
 }
