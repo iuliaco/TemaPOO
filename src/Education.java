@@ -1,12 +1,13 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Education implements Comparable<Education> {
-    private int startDate, endDate;
+    private LocalDate startDate, endDate;
     private String institutionName, educationLevel;
     private double meanGPA;
 
-    public Education(int startDate, int endDate, String institutionName, String educationLevel, double meanGPA) throws InvalidDatesException {
-        if( endDate < startDate ) {
+    public Education(LocalDate startDate, LocalDate endDate, String institutionName, String educationLevel, double meanGPA) throws InvalidDatesException {
+        if( endDate.isBefore(startDate) ) {
             throw new InvalidDatesException();
         } else {
             this.startDate = startDate;
@@ -21,12 +22,12 @@ public class Education implements Comparable<Education> {
         if(this == o) {
             return 1;
         }
-        if(o.meanGPA == 0 || this.meanGPA == 0) {
-            return this.startDate > o.startDate? 1: 0;
+        if(o.endDate == null || this.endDate == null) {
+            return this.startDate.isBefore(o.startDate)? 1: -1;
         }
         if(o.endDate == this.endDate) {
-            return this.meanGPA < o.meanGPA? 0: 1;
+            return this.meanGPA < o.meanGPA? -1: 1;
         }
-        return this.endDate < o.endDate? 0: 1;
+        return this.endDate.isAfter(o.endDate)? -1: 1;
     }
 }

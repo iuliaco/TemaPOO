@@ -8,6 +8,16 @@ public class Information {
         languages = new HashMap<>();
     }
 
+    public Information(String name, String surname, String email, String phone, String birthdate, String sex) {
+        languages = new HashMap<>();
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
+        this.birthdate = birthdate;
+        this.sex = sex;
+    }
+
     public String getName() {
         return name;
     }
