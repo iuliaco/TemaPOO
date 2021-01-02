@@ -2,12 +2,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
+    private static Application app_instance = null;
     public ArrayList<Company> companies;
     public ArrayList<User> users;
 
-    public Application() {
+    private Application() {
         companies = new ArrayList<>();
         users = new ArrayList<>();
+    }
+
+    private static  Application getInstance() {
+        if(app_instance == null) {
+            app_instance = new Application();
+        }
+        return app_instance;
     }
 
     public ArrayList<Company> getCompanies() {
