@@ -1,9 +1,17 @@
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User extends Consumer {
-
+    List<String> companies;
     public User(Resume resume) {
         super(resume);
+        companies = new ArrayList<String>();
+    }
+    public User(Resume resume, List<String> companies) {
+        super(resume);
+        this.companies = companies;
+
     }
 
     public Employee convert() {

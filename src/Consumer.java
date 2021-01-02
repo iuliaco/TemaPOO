@@ -79,12 +79,13 @@ public abstract class Consumer {
     }
 
     public Double meanGPA() {
+        int noEducations = 0;
+        double GPA = 0;
         for (Education education : resume.getEducations()) {
-            if (education.getEducationLevel().equals("licenta")) {
-               return education.getMeanGPA();
-            }
+            GPA = GPA + education.getMeanGPA();
+            noEducations++;
         }
-        return null;
+        return (double) GPA/noEducations;
     }
 
 

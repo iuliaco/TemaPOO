@@ -7,7 +7,13 @@ public class Education implements Comparable<Education> {
     private double meanGPA;
 
     public Education(LocalDate startDate, LocalDate endDate, String institutionName, String educationLevel, double meanGPA) throws InvalidDatesException {
-        if( endDate.isBefore(startDate) ) {
+        if(endDate == null) {
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.institutionName = institutionName;
+            this.educationLevel = educationLevel;
+            this.meanGPA = meanGPA;
+        } else if( endDate.isBefore(startDate) ) {
             throw new InvalidDatesException();
         } else {
             this.startDate = startDate;

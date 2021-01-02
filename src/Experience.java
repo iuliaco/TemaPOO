@@ -24,7 +24,7 @@ class Experience implements Comparable<Experience>{
             return 1;
         }
         if(o.endDate == null || this.endDate == null) {
-            return this.startDate.isBefore(o.startDate)? 1: -1;
+            return this.company.compareTo(o.company);
         }
         if(o.endDate == this.endDate) {
             return this.company.compareTo(o.company);
