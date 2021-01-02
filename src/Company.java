@@ -90,5 +90,36 @@ public class Company {
         return jobs;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
+    public ArrayList<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(ArrayList<Department> departments) {
+        this.departments = departments;
+    }
+
+    public ArrayList<Recruiter> getRecruiters() {
+        return recruiters;
+    }
+
+    public void setRecruiters(ArrayList<Recruiter> recruiters) {
+        this.recruiters = recruiters;
+    }
 }
 
