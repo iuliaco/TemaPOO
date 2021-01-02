@@ -11,7 +11,7 @@ public class Application {
         users = new ArrayList<>();
     }
 
-    private static  Application getInstance() {
+    public static  Application getInstance() {
         if(app_instance == null) {
             app_instance = new Application();
         }
