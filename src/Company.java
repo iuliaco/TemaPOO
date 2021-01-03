@@ -44,24 +44,38 @@ public class Company {
                 if(recruiters.contains(employee)) {
                     recruiters.remove(employee);
                 }
+                departments.get(index).remove(employee);
             }
+            departments.remove(index);
         }
+
     }
 
     public void remove(Recruiter recruiter) {
-
+        if(recruiters.contains(recruiter)) {
+            recruiters.remove(recruiter);
+        }
     }
 
     public void move(Department source, Department destination) {
-
+        destination.setAvailableJobs(source.getAvailableJobs());
+        destination.setEmployees(source.getEmployees());
+        departments.remove(source);
+        departments.add(destination);
     }
 
     public void move(Employee employee, Department newDepartment) {
-
+        for (Department departament: departments) {
+            if(departament.getEmployees().contains(employee)) {
+                departament.remove(employee);
+                break;
+            }
+        }
+        newDepartment.add(employee);
     }
 
     public boolean contains(Department department) {
-
+        return departments.contains(department);
     }
 
     public boolean contains(Employee employee) {
@@ -79,7 +93,7 @@ public class Company {
     }
 
     public Recruiter getRecruiter(User user) {
-
+        return null;
     }
 
     public ArrayList<Job> getJobs() {

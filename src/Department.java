@@ -29,5 +29,15 @@ public abstract class Department {
         return employees;
     }
 
+    public void setEmployees(ArrayList<Employee> employees) {
+        this.employees = employees;
+    }
 
+    public ArrayList<Job> getAvailableJobs() {
+        return availableJobs;
+    }
+
+    public void setAvailableJobs(ArrayList<Job> availableJobs) {
+        this.availableJobs = availableJobs;
+    }
 }
