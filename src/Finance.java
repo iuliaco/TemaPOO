@@ -11,4 +11,9 @@ public class Finance extends Department {
         }
         return total;
     }
+
+    @Override
+    public String toString() {
+        return "\nFinance" + super.toString();
+    }
 }

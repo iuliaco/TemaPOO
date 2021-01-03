@@ -7,4 +7,9 @@ public class IT extends Department{
         }
         return total;
     }
+
+    @Override
+    public String toString() {
+        return "\nIT" + super.toString();
+    }
 }

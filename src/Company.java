@@ -135,5 +135,15 @@ public class Company {
     public void setRecruiters(ArrayList<Recruiter> recruiters) {
         this.recruiters = recruiters;
     }
+
+    @Override
+    public String toString() {
+        return "\nCompany{" +
+                "name='" + name + '\'' +
+                ", manager=" + manager +
+                ", departments=" + departments +
+                ", recruiters=" + recruiters +
+                '}';
+    }
 }
 

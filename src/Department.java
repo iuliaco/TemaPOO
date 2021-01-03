@@ -6,7 +6,7 @@ public abstract class Department {
 
     public Department() {
         employees = new ArrayList<>();
-        availableJobs = new ArrayList<>(availableJobs);
+        availableJobs = new ArrayList<>();
     }
 
     public abstract double getTotalSalaryBudget();
@@ -39,5 +39,13 @@ public abstract class Department {
 
     public void setAvailableJobs(ArrayList<Job> availableJobs) {
         this.availableJobs = availableJobs;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "employees=" + employees +
+                ", availableJobs=" + availableJobs +
+                '}';
     }
 }

@@ -72,4 +72,12 @@ public class Application {
     public void setUsers(ArrayList<User> users) {
         this.users = users;
     }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "companies=" + companies +
+                ", users=" + users +
+                '}';
+    }
 }
