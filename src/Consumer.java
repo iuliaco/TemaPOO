@@ -1,10 +1,11 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Consumer {
     Resume resume;
     ArrayList<Consumer> acquaintances;
 
-    class Resume {
+    static class Resume {
         private Information info;
         private SortedArrayList<Education> educations;
         private SortedArrayList<Experience> experiences;
@@ -14,12 +15,49 @@ public abstract class Consumer {
             educations = new SortedArrayList<Education>();
             experiences = new SortedArrayList<Experience>();
         }
+        public Resume(ResumeBuilder builder) {
 
+        }
         public Resume(Information info) {
             this();
             this.info = info;
         }
-
+        public static  class ResumeBuilder{
+            private Information info;
+            private SortedArrayList<Education> educations;
+            private SortedArrayList<Experience> experiences;
+            {
+                educations = new SortedArrayList<>();
+                experiences = new SortedArrayList<>();
+            }
+            public ResumeBuilder info(String name, String surname, String email, String phone, String birthdate, String sex) {
+                this.info = new Information(name, surname, email, phone, birthdate, sex);
+                return this;
+            }
+            public ResumeBuilder language(String name, String level) {
+                this.info.addLanguages(name, level);
+                return this;
+            }
+            public ResumeBuilder education(LocalDate startDate, LocalDate endDate, String institutionName, String educationLevel, double meanGPA) {
+                try {
+                    this.educations.add(new Education(startDate, endDate, institutionName, educationLevel, meanGPA));
+                } catch (InvalidDatesException e) {
+                    e.printStackTrace();
+                }
+                return this;
+            }
+            public ResumeBuilder experience(LocalDate startDate, LocalDate endDate, String position, String company) {
+                try {
+                    this.experiences.add(new Experience(startDate, endDate, position, company));
+                } catch (InvalidDatesException e) {
+                    e.printStackTrace();
+                }
+                return this;
+            }
+            public Resume build() {
+                return new Resume(this);
+            }
+        }
         public void addEducation(Education education) {
             this.educations.add(education);
         }
