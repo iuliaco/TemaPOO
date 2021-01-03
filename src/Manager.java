@@ -44,6 +44,8 @@ public class Manager extends Employee {
               if(app.remove(user) == false) {
                   System.err.println("Nu am putut gasi utilizatorul pe care vreti sa-l stergeti.");
               }
+              newEmployee.setCompany(job.getCompany());
+              newEmployee.setSalary(job.getSalary());
               company.add(newEmployee, jobDept);
               noPositions--;
             }
