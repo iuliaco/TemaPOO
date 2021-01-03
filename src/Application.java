@@ -60,4 +60,16 @@ public class Application {
         }
         return jobs;
     }
+
+    public void setCompanies(ArrayList<Company> companies) {
+        this.companies = companies;
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
 }

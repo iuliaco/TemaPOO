@@ -10,6 +10,7 @@ public class Recruiter extends Employee{
         String company = this.getCompany();
         Application application = Application.getInstance();
         application.getCompany(company).getManager().addRequest(request);
+        rating = rating + 0.1;
         return score;
     }
 }
