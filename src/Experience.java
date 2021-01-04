@@ -6,8 +6,12 @@ class Experience implements Comparable<Experience>{
     private String company;
 
     public Experience(LocalDate startDate, LocalDate endDate, String position, String company) throws InvalidDatesException {
-
-        if( endDate.isBefore(startDate) ) {
+        if(endDate == null) {
+            this.startDate = startDate;
+            this.endDate = null;
+            this.position = position;
+            this.company = company;
+        } else if( endDate.isBefore(startDate) ) {
             throw new InvalidDatesException();
         } else {
             this.startDate = startDate;
@@ -62,5 +66,15 @@ class Experience implements Comparable<Experience>{
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    @Override
+    public String toString() {
+        return "Experience{" +
+                "startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", position='" + position + '\'' +
+                ", company='" + company + '\'' +
+                '}';
     }
 }

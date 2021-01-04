@@ -6,9 +6,9 @@ public class Job {
     private Constraint graduationYear, yearsOfExperience, meanGPA;
     private final ArrayList<User> candidates;
     private int noPositions;
-    private double salary;
+    private int salary;
 
-    public Job(String job, String company, Boolean isOpen, Constraint graduationYear, Constraint yearsOfExperience, Constraint meanGPA, int numberOfPlaces, double salary) {
+    public Job(String job, String company, Boolean isOpen, Constraint graduationYear, Constraint yearsOfExperience, Constraint meanGPA, int numberOfPlaces, int salary) {
         this.candidates = new ArrayList<User>();
         this.job = job;
         this.company = company;
@@ -87,11 +87,11 @@ public class Job {
         this.noPositions = numberOfPlaces;
     }
 
-    public double getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 }

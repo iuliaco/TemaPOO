@@ -56,4 +56,12 @@ public class Manager extends Employee {
         job.setOpen(false);
     }
 
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "requests=" + requests +
+                ", resume=" + resume +
+                ", acquaintances=" + acquaintances +
+                "} ";
+    }
 }

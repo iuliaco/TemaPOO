@@ -1,17 +1,18 @@
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class Information {
-    private String name, surname, email, phone, birthdate, sex;
+    private String name, email, phone, sex;
+    LocalDate birthdate;
     private HashMap<String, String> languages;
 
     public Information() {
         languages = new HashMap<>();
     }
 
-    public Information(String name, String surname, String email, String phone, String birthdate, String sex) {
+    public Information(String name, String email, String phone, LocalDate birthdate, String sex) {
         languages = new HashMap<>();
         this.name = name;
-        this.surname = surname;
         this.email = email;
         this.phone = phone;
         this.birthdate = birthdate;
@@ -24,14 +25,6 @@ public class Information {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getEmail() {
@@ -50,11 +43,11 @@ public class Information {
         this.phone = phone;
     }
 
-    public String getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -76,5 +69,17 @@ public class Information {
 
     public void addLanguages(String language, String level) {
         languages.put(language, level);
+    }
+
+    @Override
+    public String toString() {
+        return "Information{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", sex='" + sex + '\'' +
+                ", birthdate=" + birthdate +
+                ", languages=" + languages +
+                '}';
     }
 }

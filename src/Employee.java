@@ -2,7 +2,7 @@ import java.time.Period;
 
 public class Employee extends Consumer{
     private String company;
-    private Double salary;
+    private int salary;
     public Employee(Resume resume) {
         super(resume);
     }
@@ -17,7 +17,7 @@ public class Employee extends Consumer{
     public int getExperienceYears() {
         int years;
         years = 0;
-        for (Experience exp: this.resume.getExperiences()) {
+        for (Experience exp: this.resume.getExperiences().experiences) {
             Period period = Period.between(exp.getStartDate(), exp.getEndDate());
             if(period.getMonths() >= 3) {
                 years = years + 1;
@@ -27,11 +27,21 @@ public class Employee extends Consumer{
         return years;
     }
 
-    public Double getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{\n" +
+                "resume='" + resume + '\'' +
+                ", salary=" + salary +
+                ", company=" + company +
+                ", acquaintances=" + acquaintances +
+                "} ";
     }
 }

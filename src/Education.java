@@ -76,4 +76,15 @@ public class Education implements Comparable<Education> {
     public void setMeanGPA(double meanGPA) {
         this.meanGPA = meanGPA;
     }
+
+    @Override
+    public String toString() {
+        return "Education{" +
+                "startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", institutionName='" + institutionName + '\'' +
+                ", educationLevel='" + educationLevel + '\'' +
+                ", meanGPA=" + meanGPA +
+                '}';
+    }
 }

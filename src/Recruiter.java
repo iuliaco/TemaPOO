@@ -13,4 +13,13 @@ public class Recruiter extends Employee{
         rating = rating + 0.1;
         return score;
     }
+
+    @Override
+    public String toString() {
+        return "\nRecruiter{" +
+                "rating=" + rating +
+                ", resume=" + resume +
+                ", acquaintances=" + acquaintances +
+                "} ";
+    }
 }

@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 public abstract class Consumer {
     Resume resume;
@@ -7,16 +9,19 @@ public abstract class Consumer {
 
     static class Resume {
         private Information info;
-        private SortedArrayList<Education> educations;
-        private SortedArrayList<Experience> experiences;
+        private SortedArrayListEducation educations;
+        private SortedArrayListExperience experiences;
 
         // educatie si experienta profi sortate
         public Resume() {
-            educations = new SortedArrayList<Education>();
-            experiences = new SortedArrayList<Experience>();
+            educations = new SortedArrayListEducation();
+            experiences = new SortedArrayListExperience();
         }
         public Resume(ResumeBuilder builder) {
-
+            this();
+            this.educations = builder.educations;
+            this.experiences = builder.experiences;
+            this.info = builder.info;
         }
         public Resume(Information info) {
             this();
@@ -24,18 +29,22 @@ public abstract class Consumer {
         }
         public static  class ResumeBuilder{
             private Information info;
-            private SortedArrayList<Education> educations;
-            private SortedArrayList<Experience> experiences;
+            private SortedArrayListEducation educations;
+            private SortedArrayListExperience experiences;
             {
-                educations = new SortedArrayList<>();
-                experiences = new SortedArrayList<>();
+                educations = new SortedArrayListEducation();
+                experiences = new SortedArrayListExperience();
             }
-            public ResumeBuilder info(String name, String surname, String email, String phone, String birthdate, String sex) {
-                this.info = new Information(name, surname, email, phone, birthdate, sex);
+            public ResumeBuilder info(String name, String email, String phone, LocalDate birthdate, String sex) {
+                this.info = new Information(name, email, phone, birthdate, sex);
                 return this;
             }
             public ResumeBuilder language(String name, String level) {
                 this.info.addLanguages(name, level);
+                return this;
+            }
+            public ResumeBuilder languages(HashMap<String, String> languages) {
+                this.info.setLanguages(languages);
                 return this;
             }
             public ResumeBuilder education(LocalDate startDate, LocalDate endDate, String institutionName, String educationLevel, double meanGPA) {
@@ -44,6 +53,14 @@ public abstract class Consumer {
                 } catch (InvalidDatesException e) {
                     e.printStackTrace();
                 }
+                return this;
+            }
+            public ResumeBuilder educations(SortedArrayListEducation educations) {
+                this.educations.educations.addAll(educations.educations);
+                return this;
+            }
+            public ResumeBuilder experiences(SortedArrayListExperience experiences) {
+                this.experiences.experiences.addAll(experiences.experiences);
                 return this;
             }
             public ResumeBuilder experience(LocalDate startDate, LocalDate endDate, String position, String company) {
@@ -66,11 +83,20 @@ public abstract class Consumer {
             this.experiences.add(experience);
         }
 
-        public SortedArrayList<Education> getEducations() {
+        @Override
+        public String toString() {
+            return "Resume{" +
+                    "info=" + info +
+                    ", educations=" + educations +
+                    ", experiences=" + experiences +
+                    '}';
+        }
+
+        public SortedArrayListEducation getEducations() {
             return educations;
         }
 
-        public SortedArrayList<Experience> getExperiences() {
+        public SortedArrayListExperience getExperiences() {
             return experiences;
         }
     }
@@ -105,7 +131,7 @@ public abstract class Consumer {
     }
 
     public Integer getGraduationYear() {
-        for (Education education : resume.getEducations()) {
+        for (Education education : resume.getEducations().educations) {
             if (education.getEducationLevel().equals("licenta")) {
                 if (education.getEndDate() == null)
                     return null;
@@ -119,7 +145,7 @@ public abstract class Consumer {
     public Double meanGPA() {
         int noEducations = 0;
         double GPA = 0;
-        for (Education education : resume.getEducations()) {
+        for (Education education : resume.getEducations().educations) {
             GPA = GPA + education.getMeanGPA();
             noEducations++;
         }

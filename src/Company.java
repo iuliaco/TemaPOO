@@ -27,7 +27,34 @@ public class Company {
     public void add(Employee employee, Department department) {
         departments.get(departments.indexOf(department)).add(employee);
     }
-
+    public Department findDepartament(String departament) {
+        if("IT".equals(departament)) {
+            for (Department dept: departments) {
+                if(dept instanceof IT){
+                    return dept;
+                }
+            }
+        } else if("Management".equals(departament)) {
+            for (Department dept: departments) {
+                if(dept instanceof Management){
+                    return dept;
+                }
+            }
+        } else if("Marketing".equals(departament)) {
+            for (Department dept: departments) {
+                if(dept instanceof Marketing){
+                    return dept;
+                }
+            }
+        } else if("Finance".equals(departament)) {
+            for (Department dept: departments) {
+                if(dept instanceof Finance){
+                    return dept;
+                }
+            }
+        }
+        return null;
+    }
     public void remove(Employee employee) {
         if(recruiters.contains(employee))
             recruiters.remove(employee);
@@ -142,7 +169,7 @@ public class Company {
                 "name='" + name + '\'' +
                 ", manager=" + manager +
                 ", departments=" + departments +
-                ", recruiters=" + recruiters +
+                ", \nrecruiters=" + recruiters +
                 '}';
     }
 }
