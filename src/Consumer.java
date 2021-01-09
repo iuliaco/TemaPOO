@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public abstract class Consumer {
     Resume resume;
@@ -123,7 +124,27 @@ public abstract class Consumer {
     }
 
     public int getDegreeInFriendship(Consumer consumer) {
-        return 1;
+        HashMap<Consumer, Integer> list;
+        ArrayList<Consumer> friends;
+        list = new HashMap<>();
+        friends = new ArrayList<>();
+        list.put(this, 0);
+        friends.add(this);
+        for (int i = 0; i < friends.size(); i++) {
+            Consumer friend = friends.get(i);
+            for (Consumer friendFriend: friend.acquaintances) {
+                if(friendFriend.equals(consumer)) {
+                    int pos = list.get(friend);
+                    return pos + 1;
+                }
+                if(!friends.contains(friendFriend)) {
+                    int pos = list.get(friend);
+                    list.put(friendFriend, pos + 1);
+                    friends.add(friendFriend);
+                }
+            }
+        }
+        return -1;
     }
 
     public void remove(Consumer consumer) {
