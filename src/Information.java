@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 public class Information {
-    private String name, email, phone, sex;
+    private String firstName, lastName, email, phone, sex;
     LocalDate birthdate;
     private HashMap<String, String> languages;
 
@@ -10,21 +10,30 @@ public class Information {
         languages = new HashMap<>();
     }
 
-    public Information(String name, String email, String phone, LocalDate birthdate, String sex) {
+    public Information(String lastName, String firstName, String email, String phone, LocalDate birthdate, String sex) {
         languages = new HashMap<>();
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.birthdate = birthdate;
         this.sex = sex;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -74,7 +83,8 @@ public class Information {
     @Override
     public String toString() {
         return "Information{" +
-                "name='" + name + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", sex='" + sex + '\'' +

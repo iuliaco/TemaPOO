@@ -44,9 +44,9 @@ public class Test {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        Reader myObj = null;
+
         try {
-            myObj = new FileReader("consumers.json");
+            Reader myObj = new FileReader("consumers.json");
             JSONParser parser = new JSONParser();
             JSONObject obj;
             obj = (JSONObject) parser.parse(myObj);
@@ -99,11 +99,12 @@ public class Test {
                 }
                 int salary = (int) ((Long) employeeJSON.get("salary")).intValue();
                 String name = (String) employeeJSON.get("name");
+                String[] names = name.split(" ");
                 String email = (String) employeeJSON.get("email");
                 String phone = (String) employeeJSON.get("phone");
                 LocalDate birthDate = LocalDate.parse((String)employeeJSON.get("date_of_birth"), formatter);
                 String sex = (String) employeeJSON.get("genre");
-                Consumer.Resume resume = new Consumer.Resume.ResumeBuilder().info(name,email,phone,birthDate,sex).languages(languages).educations(educations).experiences(experiences).build();
+                Consumer.Resume resume = new Consumer.Resume.ResumeBuilder().info(names[0], names[1],email,phone,birthDate,sex).languages(languages).educations(educations).experiences(experiences).build();
                 Employee employee = new Employee(resume);
                 employee.setCompany(currCompany);
                 employee.setSalary(salary);
@@ -161,15 +162,20 @@ public class Test {
                 }
                 int salary = (int) ((Long) rectuiterJSON.get("salary")).intValue();
                 String name = (String) rectuiterJSON.get("name");
+                String[] names = name.split(" ");
                 String email = (String) rectuiterJSON.get("email");
                 String phone = (String) rectuiterJSON.get("phone");
                 LocalDate birthDate = LocalDate.parse((String)rectuiterJSON.get("date_of_birth"), formatter);
                 String sex = (String) rectuiterJSON.get("genre");
-                Consumer.Resume resume = new Consumer.Resume.ResumeBuilder().info(name,email,phone,birthDate,sex).languages(languages).educations(educations).experiences(experiences).build();
+                Consumer.Resume resume = new Consumer.Resume.ResumeBuilder().info(names[0], names[1], email,phone,birthDate,sex).languages(languages).educations(educations).experiences(experiences).build();
                 Recruiter rectuiter = new Recruiter(resume);
+                Employee employee = new Employee(resume);
                 rectuiter.setCompany(currCompany);
                 rectuiter.setSalary(salary);
+                employee.setCompany(currCompany);
+                employee.setSalary(salary);
                 application.getCompany(currCompany).add(rectuiter);
+                application.getCompany(currCompany).add(employee, application.getCompany(currCompany).findDepartament("IT"));
 //                System.out.println(employee);
 
             }
@@ -223,11 +229,12 @@ public class Test {
                     userCompanies.add((String) userCompaniesIntersted.get(j));
                 }
                 String name = (String) userJSON.get("name");
+                String[] names = name.split(" ");
                 String email = (String) userJSON.get("email");
                 String phone = (String) userJSON.get("phone");
                 LocalDate birthDate = LocalDate.parse((String)userJSON.get("date_of_birth"), formatter);
                 String sex = (String) userJSON.get("genre");
-                Consumer.Resume resume = new Consumer.Resume.ResumeBuilder().info(name,email,phone,birthDate,sex).languages(languages).educations(educations).experiences(experiences).build();
+                Consumer.Resume resume = new Consumer.Resume.ResumeBuilder().info(names[0], names[1],email,phone,birthDate,sex).languages(languages).educations(educations).experiences(experiences).build();
                 User user = new User(resume);
                 user.setCompanies(userCompanies);
                 application.add(user);
@@ -286,11 +293,12 @@ public class Test {
                 }
                 int salary = (int) ((Long) managerJSON.get("salary")).intValue();
                 String name = (String) managerJSON.get("name");
+                String[] names = name.split(" ");
                 String email = (String) managerJSON.get("email");
                 String phone = (String) managerJSON.get("phone");
                 LocalDate birthDate = LocalDate.parse((String)managerJSON.get("date_of_birth"), formatter);
                 String sex = (String) managerJSON.get("genre");
-                Consumer.Resume resume = new Consumer.Resume.ResumeBuilder().info(name,email,phone,birthDate,sex).languages(languages).educations(educations).experiences(experiences).build();
+                Consumer.Resume resume = new Consumer.Resume.ResumeBuilder().info(names[0], names[1], email, phone, birthDate, sex).languages(languages).educations(educations).experiences(experiences).build();
                 Manager manager = new Manager(resume);
                 manager.setCompany(currCompany);
                 manager.setSalary(salary);
@@ -311,6 +319,28 @@ public class Test {
             e.printStackTrace();
         }
 
+        try {
+            File myObj = new File("jobs.txt");
+            Scanner myReader = new Scanner(myObj);
+            for (int i = 0; i < 4; i++) {
+                String jobName = myReader.nextLine();
+                String jobCompany = myReader.nextLine();
+                boolean isOpen = Boolean.valueOf(myReader.nextLine());
+                String[] gradConstraint = myReader.nextLine().split(" ");
+                String[] experienceConstraint = myReader.nextLine().split(" ");
+                String[] avgConstraint = myReader.nextLine().split(" ");
+                int noPlaces = Integer.valueOf(myReader.nextLine());
+                int salary = Integer.valueOf(myReader.nextLine());
+                Constraint grad = new Constraint(LocalDate.of(Integer.valueOf(gradConstraint[0]), 1, 1), LocalDate.of(Integer.valueOf(gradConstraint[1]), 1, 1));
+                Constraint experience = new Constraint(Integer.valueOf(experienceConstraint[0]), Integer.valueOf(experienceConstraint[1]));
+                Constraint avg = new Constraint(Double.valueOf(avgConstraint[0]), Double.valueOf(avgConstraint[1]));
+                System.out.println(grad);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
         System.out.println(application);
 

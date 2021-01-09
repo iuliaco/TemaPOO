@@ -35,8 +35,8 @@ public abstract class Consumer {
                 educations = new SortedArrayListEducation();
                 experiences = new SortedArrayListExperience();
             }
-            public ResumeBuilder info(String name, String email, String phone, LocalDate birthdate, String sex) {
-                this.info = new Information(name, email, phone, birthdate, sex);
+            public ResumeBuilder info(String firstName, String lastName, String email, String phone, LocalDate birthdate, String sex) {
+                this.info = new Information(lastName, firstName, email, phone, birthdate, sex);
                 return this;
             }
             public ResumeBuilder language(String name, String level) {
