@@ -1,54 +1,73 @@
 import java.time.LocalDate;
 
 public class Constraint {
-    private LocalDate minDate, maxDate;
+    private int minGrad, maxGrad;
     private int minExperience, maxExperience;
     private Double minGPA, maxGPA;
 
-    public Constraint(LocalDate minDate, LocalDate maxDate) {
-        this.minDate = minDate;
-        this.maxDate = maxDate;
-        this.minExperience = Integer.parseInt(null);
-        this.maxExperience = Integer.parseInt(null);
-        this.minGPA = null;
-        this.maxGPA = null;
+    public int getMinGrad() {
+        return minGrad;
     }
 
-    public Constraint(int minExperience, int maxExperience) {
-        this.minDate = null;
-        this.maxDate = null;
+    public void setMinGrad(int minGrad) {
+        this.minGrad = minGrad;
+    }
+
+    public int getMaxGrad() {
+        return maxGrad;
+    }
+
+    public void setMaxGrad(int maxGrad) {
+        this.maxGrad = maxGrad;
+    }
+
+    public int getMinExperience() {
+        return minExperience;
+    }
+
+    public void setMinExperience(int minExperience) {
         this.minExperience = minExperience;
-        this.maxExperience = maxExperience;
-        this.minGPA = null;
-        this.maxGPA = null;
     }
 
-    public Constraint(Double minGPA, Double maxGPA) {
-        this.minDate = null;
-        this.maxDate = null;
-        this.minExperience = Integer.parseInt(null);
-        this.maxExperience = Integer.parseInt(null);
+    public int getMaxExperience() {
+        return maxExperience;
+    }
+
+    public void setMaxExperience(int maxExperience) {
+        this.maxExperience = maxExperience;
+    }
+
+    public Double getMinGPA() {
+        return minGPA;
+    }
+
+    public void setMinGPA(Double minGPA) {
         this.minGPA = minGPA;
+    }
+
+    public Double getMaxGPA() {
+        return maxGPA;
+    }
+
+    public void setMaxGPA(Double maxGPA) {
         this.maxGPA = maxGPA;
     }
 
     public boolean checkDate(int year) {
-        int minYear = minDate.getYear();
-        int maxYear = maxDate.getYear();
-//        int year = date.getYear();
-        if(minYear <= year) {
-            return maxYear >= year;
+
+        if(minGrad <= year) {
+            return maxGrad >= year;
         }
         return false;
     }
-    public boolean check(int experience) {
+    public boolean checkExp(int experience) {
         if(minExperience <= experience) {
             return maxExperience >= experience;
         }
         return false;
     }
 
-    public boolean check(Double GPA) {
+    public boolean checkGPA(Double GPA) {
         if(minGPA <= GPA) {
             return maxGPA >= GPA;
         }
@@ -58,8 +77,8 @@ public class Constraint {
     @Override
     public String toString() {
         return "Constraint{" +
-                "minDate=" + minDate +
-                ", maxDate=" + maxDate +
+                "minGrad=" + minGrad +
+                ", maxGrad=" + maxGrad +
                 ", minExperience=" + minExperience +
                 ", maxExperience=" + maxExperience +
                 ", minGPA=" + minGPA +

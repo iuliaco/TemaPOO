@@ -1,10 +1,8 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -331,10 +329,23 @@ public class Test {
                 String[] avgConstraint = myReader.nextLine().split(" ");
                 int noPlaces = Integer.valueOf(myReader.nextLine());
                 int salary = Integer.valueOf(myReader.nextLine());
-                Constraint grad = new Constraint(LocalDate.of(Integer.valueOf(gradConstraint[0]), 1, 1), LocalDate.of(Integer.valueOf(gradConstraint[1]), 1, 1));
-                Constraint experience = new Constraint(Integer.valueOf(experienceConstraint[0]), Integer.valueOf(experienceConstraint[1]));
-                Constraint avg = new Constraint(Double.valueOf(avgConstraint[0]), Double.valueOf(avgConstraint[1]));
-                System.out.println(grad);
+                int gradMin = "null".equals(gradConstraint[0])?0: Integer.valueOf(gradConstraint[0]);
+                int gradMax = "null".equals(gradConstraint[1])?0: Integer.valueOf(gradConstraint[1]);
+                Constraint grad = new Constraint();
+                grad.setMinGrad(gradMin);
+                grad.setMaxGrad(gradMax);
+                Constraint experience = new Constraint();
+                int minExp = "null".equals(experienceConstraint[0])?0: Integer.valueOf(experienceConstraint[0]);
+                int maxEXP = "null".equals(experienceConstraint[1])?0: Integer.valueOf(experienceConstraint[1]);
+                experience.setMaxExperience(maxEXP);
+                experience.setMinExperience(minExp);
+                Double minGPA = "null".equals(avgConstraint[0])?0.0: Double.valueOf(avgConstraint[0]);
+                Double maxGPA = "null".equals(avgConstraint[1])?0.0: Double.valueOf(avgConstraint[1]);
+                Constraint avg = new Constraint();
+                avg.setMinGPA(minGPA);
+                avg.setMaxGPA(maxGPA);
+                Job job = new Job(jobName, jobCompany, isOpen, grad, experience, avg, noPlaces, salary);
+                application.getCompany(jobCompany).findDepartament("IT").add(job);
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -342,7 +353,27 @@ public class Test {
             e.printStackTrace();
         }
 
-        System.out.println(application);
+        try {
+            File myObj = new File("friendships.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] names = data.split(" ");
+                Consumer person = application.getPerson(names[0], names[1]);
+                for (int i = 2; i < names.length; i=i+2) {
+                    Consumer friend = application.getPerson(names[i], names[i+1]);
+                    person.add(friend);
+                }
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        Consumer U1 = application.users.get(0);
+        Consumer R4= application.getPerson("Damian", "Bodhi");
+
+        System.out.println(U1.getDegreeInFriendship(R4));
 
     }
 }

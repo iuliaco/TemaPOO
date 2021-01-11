@@ -29,6 +29,27 @@ public class Application {
         }
         return null;
     }
+    public Consumer getPerson(String firstName, String lastName) {
+        for (Consumer user:app_instance.users) {
+            if(user.resume.getInfo().getFirstName().equals(firstName) && user.resume.getInfo().getLastName().equals(lastName)) {
+
+                return user;
+            }
+        }
+        for (Company company: app_instance.getCompanies()) {
+            for (Department department: company.getDepartments()) {
+                for (Consumer user : department.getEmployees()) {
+                    if(user.resume.getInfo().getFirstName().equals(firstName) && user.resume.getInfo().getLastName().equals(lastName)) {
+                        return user;
+                    }
+                }
+            }
+            if(company.getManager().resume.getInfo().getFirstName().equals(firstName) && company.getManager().resume.getInfo().getLastName().equals(lastName)) {
+                return company.getManager();
+            }
+        }
+        return null;
+    }
     public void add(Company company) {
         companies.add(company);
     }

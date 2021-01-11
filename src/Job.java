@@ -24,7 +24,7 @@ public class Job {
 
     }
     public boolean meetsRequirments(User user) {
-        return graduationYear.checkDate(user.getGraduationYear()) && yearsOfExperience.checkDate(user.getExperienceYears()) && meanGPA.check(user.meanGPA());
+        return graduationYear.checkDate(user.getGraduationYear()) && yearsOfExperience.checkDate(user.getExperienceYears()) && meanGPA.checkGPA(user.meanGPA());
     }
 
     public ArrayList<User> getCandidates() {
@@ -93,5 +93,20 @@ public class Job {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "\nJob{" +
+                "job='" + job + '\'' +
+                ", company='" + company + '\'' +
+                ", isOpen=" + isOpen +
+                ", graduationYear=" + graduationYear +
+                ", yearsOfExperience=" + yearsOfExperience +
+                ", meanGPA=" + meanGPA +
+                ", candidates=" + candidates +
+                ", noPositions=" + noPositions +
+                ", salary=" + salary +
+                '}';
     }
 }

@@ -13,6 +13,22 @@ public abstract class Consumer {
         private SortedArrayListEducation educations;
         private SortedArrayListExperience experiences;
 
+        public Information getInfo() {
+            return info;
+        }
+
+        public void setInfo(Information info) {
+            this.info = info;
+        }
+
+        public void setEducations(SortedArrayListEducation educations) {
+            this.educations = educations;
+        }
+
+        public void setExperiences(SortedArrayListExperience experiences) {
+            this.experiences = experiences;
+        }
+
         // educatie si experienta profi sortate
         public Resume() {
             educations = new SortedArrayListEducation();
