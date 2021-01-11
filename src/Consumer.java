@@ -88,7 +88,10 @@ public abstract class Consumer {
                 }
                 return this;
             }
-            public Resume build() {
+            public Resume build() throws ResumeIncompleteException{
+                if(this.educations.educations.size() == 0) {
+                    throw new ResumeIncompleteException();
+                }
                 return new Resume(this);
             }
         }

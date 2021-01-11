@@ -315,6 +315,8 @@ public class Test {
             e.printStackTrace();
         }catch (InvalidDatesException e) {
             e.printStackTrace();
+        } catch (ResumeIncompleteException e) {
+            e.printStackTrace();
         }
 
         try {
