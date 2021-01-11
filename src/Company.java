@@ -120,7 +120,21 @@ public class Company {
     }
 
     public Recruiter getRecruiter(User user) {
-        return null;
+        int max = 0;
+        Recruiter finalR = null;
+        for (Recruiter recruiter: recruiters) {
+            int degree = recruiter.getDegreeInFriendship(user);
+            if(degree > max) {
+                max = degree;
+                finalR = recruiter;
+            } else if(degree == max) {
+                if(finalR.getRating() < recruiter.getRating()) {
+                    finalR = recruiter;
+                }
+
+            }
+        }
+        return finalR;
     }
 
     public ArrayList<Job> getJobs() {

@@ -21,6 +21,12 @@ public class Job {
     }
 
     public void apply(User user) {
+        Application application = Application.getInstance();
+        if(meetsRequirments(user)) {
+            Recruiter recruiter = application.getCompany(company).getRecruiter(user);
+            recruiter.evaluate(this, user);
+
+        }
 
     }
     public boolean meetsRequirments(User user) {
