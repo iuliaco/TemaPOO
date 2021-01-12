@@ -38,7 +38,7 @@ public class Manager extends Employee {
             }
         }
         for (Request<Job, Consumer> candidate: candidates) {
-            if(app.getUsers().contains(candidate.getValue1())) {
+            if(app.getUsers().contains(candidate.getValue1()) && noPositions > 0) {
               User user = (User) candidate.getValue1();
               Employee newEmployee = user.convert();
               if(app.remove(user) == false) {
@@ -47,13 +47,20 @@ public class Manager extends Employee {
               newEmployee.setCompany(job.getCompany());
               newEmployee.setSalary(job.getSalary());
               company.add(newEmployee, jobDept);
+              for (Company comp: app.getCompanies()) {
+                  comp.removeObserver(user);
+              }
               noPositions--;
             }
             if(noPositions == 0) {
-                break;
+                Notification notif = new Notification("Ai fost respins de la jobul de " + job.getJob(), job.getCompany());
+                User user = (User) candidate.getValue1();
+                company.notifyObserver(user,notif);
             }
         }
         job.setOpen(false);
+        Notification notification = new Notification("S-a inchis jobul de " + job.getJob(), job.getCompany());
+        app.getCompany(job.getCompany()).notifyAllObservers(notification);
     }
 
     @Override

@@ -2,8 +2,9 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User extends Consumer {
+public class User extends Consumer implements Observer {
     List<String> companies;
+    ArrayList<Notification> notifications;
     public User(Resume resume) {
         super(resume);
         companies = new ArrayList<String>();
@@ -53,5 +54,10 @@ public class User extends Consumer {
                 ", resume=" + resume +
                 ", acquaintances=" + acquaintances +
                 "} ";
+    }
+
+    @Override
+    public void update(Notification notification) {
+        notifications.add(notification);
     }
 }

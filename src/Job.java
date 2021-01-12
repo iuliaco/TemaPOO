@@ -18,6 +18,9 @@ public class Job {
         this.meanGPA = meanGPA;
         this.noPositions = numberOfPlaces;
         this.salary = salary;
+        Application application = Application.getInstance();
+        Notification notification = new Notification("S-a deschis jobul de " + job, company);
+        application.getCompany(company).notifyAllObservers(notification);
     }
 
     public void apply(User user) {
@@ -25,8 +28,9 @@ public class Job {
         if(meetsRequirments(user)) {
             Recruiter recruiter = application.getCompany(company).getRecruiter(user);
             recruiter.evaluate(this, user);
-
         }
+        application.getCompany(company).addObserver(user);
+
 
     }
     public boolean meetsRequirments(User user) {

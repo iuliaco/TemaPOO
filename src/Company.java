@@ -1,15 +1,18 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Company {
+public class Company implements Subject{
 
     private String name;
     private Manager manager;
     private ArrayList<Department> departments;
     private ArrayList<Recruiter> recruiters;
+    public ArrayList<Observer> observerList;
 
     public Company() {
         departments = new ArrayList<>();
         recruiters = new ArrayList<>();
+        observerList = new ArrayList<>();
     }
     public Company(String name) {
         this();
@@ -185,6 +188,31 @@ public class Company {
                 ", departments=" + departments +
                 ", \nrecruiters=" + recruiters +
                 '}';
+    }
+
+    @Override
+    public void addObserver(User user) {
+        observerList.add(user);
+    }
+
+    @Override
+    public void removeObserver(User c) {
+        observerList.remove(c);
+    }
+
+    @Override
+    public void notifyAllObservers(Notification notification) {
+        for (Iterator<Observer> it = observerList.iterator(); it.hasNext();) {
+            Observer o = it.next();
+            o.update(notification);
+        }
+    }
+
+    @Override
+    public void notifyObserver(User user, Notification notification) {
+        if(observerList.contains(user)) {
+            user.update(notification);
+        }
     }
 }
 
