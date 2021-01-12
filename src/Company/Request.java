@@ -1,3 +1,5 @@
+package Company;
+
 public class Request<K, V> {
     private K key;
     private V value1, value2;

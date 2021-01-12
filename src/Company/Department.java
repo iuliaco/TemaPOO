@@ -1,3 +1,6 @@
+package Company;
+
+import People.*;
 import java.util.ArrayList;
 
 public abstract class Department {

@@ -1,3 +1,5 @@
+package Company;
+
 public class DepartmentsFactory {
     public Department createDepartament(String departament) {
         if(departament == null || departament.isEmpty())

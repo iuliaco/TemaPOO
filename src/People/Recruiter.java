@@ -1,3 +1,6 @@
+package People;
+import Company.*;
+
 public class Recruiter extends Employee{
     private double rating;
     public Recruiter(Resume resume) {

@@ -1,3 +1,5 @@
+package People;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -5,10 +7,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class Consumer {
-    Resume resume;
+    public Resume resume;
     ArrayList<Consumer> acquaintances;
 
-    static class Resume {
+    public static class Resume {
         private Information info;
         private SortedArrayListEducation educations;
         private SortedArrayListExperience experiences;

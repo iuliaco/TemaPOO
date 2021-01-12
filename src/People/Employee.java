@@ -1,9 +1,11 @@
+package People;
+
 import java.time.Period;
 
-public class Employee extends Consumer{
+public class Employee extends Consumer {
     private String company;
     private int salary;
-    public Employee(Resume resume) {
+    public Employee(Consumer.Resume resume) {
         super(resume);
     }
 

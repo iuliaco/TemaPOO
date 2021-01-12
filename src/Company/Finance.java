@@ -1,3 +1,6 @@
+package Company;
+import People.*;
+
 public class Finance extends Department {
     @Override
     public double getTotalSalaryBudget() {

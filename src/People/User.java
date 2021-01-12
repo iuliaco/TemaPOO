@@ -1,3 +1,6 @@
+package People;
+
+import Company.*;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;

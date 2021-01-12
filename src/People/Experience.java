@@ -1,6 +1,8 @@
+package People;
+
 import java.time.LocalDate;
 
-class Experience implements Comparable<Experience>{
+public class Experience implements Comparable<Experience>{
     private LocalDate startDate, endDate;
     private String position;
     private String company;
