@@ -84,14 +84,13 @@ public class Information {
 
     @Override
     public String toString() {
-        return "Information{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", sex='" + sex + '\'' +
-                ", birthdate=" + birthdate +
-                ", languages=" + languages +
-                '}';
+        return "" +
+                "Prenume:" + firstName + '\n' +
+                "Nume:" + lastName + '\n' +
+                "Email:" + email + '\n' +
+                "Telefon:" + phone + '\n' +
+                "Sex:" + sex + '\n' +
+                "Data nasterii:" + birthdate + '\n' +
+                "Limbi straine:" + languages + '\n' ;
     }
 }

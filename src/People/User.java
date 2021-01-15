@@ -52,12 +52,13 @@ public class User extends Consumer implements Observer {
 
     @Override
     public String toString() {
-        return "\nUser{" +
-                "companies=" + companies +
-                ", resume=" + resume +
-                ", acquaintances=" + acquaintances +
-                "} ";
+        return "\nUtilizator:\n" +
+                "" + resume +
+                "\nCompaniile de care este interesat:" + companies + "\n" +
+//                ", acquaintances=" + acquaintances +
+                "";
     }
+
 
     @Override
     public void update(Notification notification) {

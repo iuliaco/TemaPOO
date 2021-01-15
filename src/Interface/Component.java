@@ -1,6 +1,6 @@
 package Interface;
 
 public interface Component {
-    void setMediator(Mediator mediator);
+    void setMediator(MediatorProfile mediator);
     String getName();
 }

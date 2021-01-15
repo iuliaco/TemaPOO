@@ -81,12 +81,10 @@ public class Education implements Comparable<Education> {
 
     @Override
     public String toString() {
-        return "Education{" +
-                "startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", institutionName='" + institutionName + '\'' +
-                ", educationLevel='" + educationLevel + '\'' +
-                ", meanGPA=" + meanGPA +
-                '}';
+        return "" +
+                "Data de inceput:" + startDate + '\n' +
+                "Data de sfarsit:" + endDate + '\n' +
+                "Numele institutiei:" + institutionName + '\n' +
+                "Nivelul de educatie:" + educationLevel + '\n';
     }
 }

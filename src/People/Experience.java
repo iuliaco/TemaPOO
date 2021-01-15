@@ -72,11 +72,10 @@ public class Experience implements Comparable<Experience>{
 
     @Override
     public String toString() {
-        return "Experience{" +
-                "startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", position='" + position + '\'' +
-                ", company='" + company + '\'' +
-                '}';
+        return "Job: \n" +
+                "Data de inceput:" + startDate + '\n' +
+                "Data de sfarsit:" + endDate + '\n' +
+                "Pozitia:" + position + '\n' +
+                "Compania:" + company + '\n' ;
     }
 }

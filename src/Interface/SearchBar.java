@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 public class SearchBar extends JTextField implements Component{
-    private Mediator mediator;
+    private MediatorProfile mediator;
 
     @Override
-    public void setMediator(Mediator mediator) {
+    public void setMediator(MediatorProfile mediator) {
         this.mediator = mediator;
     }
     protected void processComponentKeyEvent(KeyEvent keyEvent) {

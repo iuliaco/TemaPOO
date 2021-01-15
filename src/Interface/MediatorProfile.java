@@ -1,8 +1,9 @@
 package Interface;
 import People.*;
 
-public interface Mediator {
+public interface MediatorProfile {
     void registerComponent(Component component);
     void createGUI();
-//    void displayUser(User user);
+    void displayUser();
+    Consumer searchUser(String name);
 }

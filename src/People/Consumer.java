@@ -107,11 +107,10 @@ public abstract class Consumer {
 
         @Override
         public String toString() {
-            return "Resume{" +
-                    "info=" + info +
-                    ", educations=" + educations +
-                    ", experiences=" + experiences +
-                    '}';
+            return "" +
+                    "" + info + '\n' +
+                    "Educatie:\n" + educations + '\n' +
+                    "Experienta:\n" + experiences + '\n' ;
         }
 
         public SortedArrayListEducation getEducations() {

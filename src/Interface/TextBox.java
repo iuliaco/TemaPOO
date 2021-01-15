@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 public class TextBox extends JTextArea implements Component{
-    private Mediator mediator;
+    private MediatorProfile mediator;
 
     @Override
-    public void setMediator(Mediator mediator) {
+    public void setMediator(MediatorProfile mediator) {
         this.mediator = mediator;
     }
     protected void processComponentKeyEvent(KeyEvent keyEvent) {
@@ -18,4 +18,6 @@ public class TextBox extends JTextArea implements Component{
     public String getName() {
         return "TextBox";
     }
+
+
 }

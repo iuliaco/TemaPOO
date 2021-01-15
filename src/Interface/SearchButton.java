@@ -4,16 +4,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class SearchButton extends JButton implements Component{
-    private Mediator mediator;
+    private MediatorProfile mediator;
     public SearchButton() {
         super("Search");
     }
     @Override
-    public void setMediator(Mediator mediator) {
+    public void setMediator(MediatorProfile mediator) {
         this.mediator = mediator;
     }
     protected void fireActionPerformed(ActionEvent actionEvent) {
-        ;
+        mediator.displayUser();
     }
 
     @Override
