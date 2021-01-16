@@ -130,6 +130,7 @@ public class Company implements Subject{
         Recruiter finalR = null;
         for (Recruiter recruiter: recruiters) {
             int degree = recruiter.getDegreeInFriendship(user);
+            System.out.println(degree);
             if(degree > max) {
                 max = degree;
                 finalR = recruiter;

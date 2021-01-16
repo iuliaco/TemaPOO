@@ -376,10 +376,28 @@ public class Test {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        Consumer U1 = application.users.get(0);
-        Consumer R4= application.getPerson("Damian", "Bodhi");
+        Consumer U1 = application.users.get(1);
+        Consumer R4= application.getPerson("Jonie", "Phillip");
+        System.out.println(R4.getDegreeInFriendship(U1));
+        System.out.println(R4.getDegreeInFriendship(U1));
 
-        System.out.println(U1.getDegreeInFriendship(R4));
+//        System.out.println(U1.getAcquaintances());
+        for (User user: application.getUsers()) {
+            System.out.println("Isi cauta job" + user.resume.getInfo().getLastName());
+            for (Job job : application.getJobs(user.getCompanies())) {
+                job.apply(user);
+            }
+        }
+        for (int i = 0; i < application.getCompany("Amazon").getJobs().size(); i++) {
+            Job job = application.getCompany("Amazon").getJobs().get(i);
+            application.getCompany("Amazon").getManager().process(job);
+        }
+        for (int i = 0; i < application.getCompany("Google").getJobs().size(); i++) {
+            Job job = application.getCompany("Google").getJobs().get(i);
+            application.getCompany("Google").getManager().process(job);
+        }
 
+//        System.out.println(application.getCompany("Google").getManager());
+        System.out.println(application.getCompany("Google").findDepartament("IT"));
     }
 }

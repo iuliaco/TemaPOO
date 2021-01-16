@@ -37,7 +37,7 @@ public class Job {
 
     }
     public boolean meetsRequirments(User user) {
-        return graduationYear.checkDate(user.getGraduationYear()) && yearsOfExperience.checkDate(user.getExperienceYears()) && meanGPA.checkGPA(user.meanGPA());
+        return graduationYear.checkDate(user.getGraduationYear()) && yearsOfExperience.checkExp(user.getExperienceYears()) && meanGPA.checkGPA(user.meanGPA());
     }
 
     public ArrayList<User> getCandidates() {

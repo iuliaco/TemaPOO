@@ -3,7 +3,7 @@ Google
 true
 2002 2020
 2 6
-8 null
+8.0 10.0
 1
 10000
 Software Developer Engineer Intern
@@ -11,15 +11,15 @@ Google
 true
 null null
 0 2
-9.00 null
+9.00 10.0
 1
 5000
 Software Developer Engineer
 Amazon
 true
 2014 2020
-1 null
-9.00 null
+1 100
+9.00 10.0
 1
 12000
 Software Developer Engineer Intern
@@ -27,6 +27,6 @@ Amazon
 true
 null null
 0 2
-9.35 null
+9.35 10.0
 1
 6000

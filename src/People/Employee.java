@@ -43,7 +43,7 @@ public class Employee extends Consumer {
                 "resume='" + resume + '\'' +
                 ", salary=" + salary +
                 ", company=" + company +
-                ", acquaintances=" + acquaintances +
+//                ", acquaintances=" + acquaintances +
                 "} ";
     }
 }

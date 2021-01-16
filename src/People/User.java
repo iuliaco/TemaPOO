@@ -10,6 +10,7 @@ public class User extends Consumer implements Observer {
     ArrayList<Notification> notifications;
     public User(Resume resume) {
         super(resume);
+        notifications = new ArrayList<Notification>();
         companies = new ArrayList<String>();
     }
     public User(Resume resume, List<String> companies) {
@@ -21,6 +22,11 @@ public class User extends Consumer implements Observer {
     public Employee convert() {
         Employee em;
         em = new Employee(this.resume);
+        for (Consumer friend: this.acquaintances) {
+            friend.remove(this);
+            friend.add(em);
+            em.add(friend);
+        }
         return em;
     }
     public int getExperienceYears() {

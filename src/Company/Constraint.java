@@ -56,13 +56,14 @@ public class Constraint {
     }
 
     public boolean checkDate(int year) {
-
+        System.out.println("Year " + year + " minGrad " + minGrad + "maxGrad" + maxGrad);
         if(minGrad <= year) {
             return maxGrad >= year;
         }
         return false;
     }
     public boolean checkExp(int experience) {
+        System.out.println("Exp " + experience + " minExp " + minExperience + "maxExp" + maxExperience);
         if(minExperience <= experience) {
             return maxExperience >= experience;
         }
@@ -70,6 +71,7 @@ public class Constraint {
     }
 
     public boolean checkGPA(Double GPA) {
+        System.out.println("GPA " + GPA + " minGPA " + minGPA + "maxGPA" + maxGPA);
         if(minGPA <= GPA) {
             return maxGPA >= GPA;
         }

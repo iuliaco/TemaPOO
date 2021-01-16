@@ -143,6 +143,10 @@ public abstract class Consumer {
         acquaintances.add(consumer);
     }
 
+    public ArrayList<Consumer> getAcquaintances() {
+        return acquaintances;
+    }
+
     public int getDegreeInFriendship(Consumer consumer) {
         HashMap<Consumer, Integer> list;
         ArrayList<Consumer> friends;
@@ -155,6 +159,7 @@ public abstract class Consumer {
             for (Consumer friendFriend: friend.acquaintances) {
                 if(friendFriend.equals(consumer)) {
                     int pos = list.get(friend);
+                    System.out.println("Found");
                     return pos + 1;
                 }
                 if(!friends.contains(friendFriend)) {
@@ -162,6 +167,8 @@ public abstract class Consumer {
                     list.put(friendFriend, pos + 1);
                     friends.add(friendFriend);
                 }
+
+
             }
         }
         return -1;
@@ -173,14 +180,14 @@ public abstract class Consumer {
 
     public Integer getGraduationYear() {
         for (Education education : resume.getEducations().educations) {
-            if (education.getEducationLevel().equals("licenta")) {
+            if (education.getEducationLevel().equals("college")) {
                 if (education.getEndDate() == null)
-                    return null;
+                    return 0;
                 else
                     return education.getEndDate().getYear();
             }
         }
-        return null;
+        return 0;
     }
 
     public Double meanGPA() {

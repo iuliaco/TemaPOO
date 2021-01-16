@@ -12,17 +12,19 @@ public class Manager extends Employee {
 
     public Manager(Resume resume) {
         super(resume);
-        ArrayList<Request<Job, Consumer>> requests = new ArrayList<>();
+        requests = new ArrayList<>();
     }
     public void addRequest(Request request) {
         requests.add(request);
     }
     public void process(Job job) {
         List<Request<Job, Consumer>> candidates = new ArrayList<>();
-        for (Request req: requests) {
+        for (int i = 0 ; i < requests.size(); i++) {
+            Request req = requests.get(i);
             if(req.getKey() == job) {
                 candidates.add(req);
                 requests.remove(req);
+                i--;
             }
         }
         Collections.sort(candidates, new Comparator<Request<Job, Consumer>>() {
@@ -44,6 +46,7 @@ public class Manager extends Employee {
         for (Request<Job, Consumer> candidate: candidates) {
             if(app.getUsers().contains(candidate.getValue1()) && noPositions > 0) {
               User user = (User) candidate.getValue1();
+              System.out.println("angajez pe " + user.resume.getInfo().getLastName());
               Employee newEmployee = user.convert();
               if(app.remove(user) == false) {
                   System.err.println("Nu am putut gasi utilizatorul pe care vreti sa-l stergeti.");
@@ -67,12 +70,16 @@ public class Manager extends Employee {
         app.getCompany(job.getCompany()).notifyAllObservers(notification);
     }
 
+    public ArrayList<Request<Job, Consumer>> getRequests() {
+        return requests;
+    }
+
     @Override
     public String toString() {
-        return "Manager{" +
+        return "Manager" +
                 "requests=" + requests +
-                ", resume=" + resume +
-                ", acquaintances=" + acquaintances +
-                "} ";
+                "" + resume +
+//                ", acquaintances=" + acquaintances +
+                " ";
     }
 }

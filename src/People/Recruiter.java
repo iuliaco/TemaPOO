@@ -14,6 +14,7 @@ public class Recruiter extends Employee{
         Application application = Application.getInstance();
         application.getCompany(company).getManager().addRequest(request);
         rating = rating + 0.1;
+        System.out.println("Aplic la compania " + company);
         return score;
     }
 
@@ -30,7 +31,7 @@ public class Recruiter extends Employee{
         return "\nRecruiter{" +
                 "rating=" + rating +
                 ", resume=" + resume +
-                ", acquaintances=" + acquaintances +
+//                ", acquaintances=" + acquaintances +
                 "} ";
     }
 }
