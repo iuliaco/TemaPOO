@@ -22,7 +22,8 @@ public class Request<K, V> {
     public Double getScore() {
         return score;
     }
-    public String toString() {
+
+    public String toStringMax() {
         return "Key: " + key + " ; Value1: " + value1 + " ; Value2: " + value2 + " ; Score: " + score;
     }
 }

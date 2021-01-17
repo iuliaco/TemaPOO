@@ -388,16 +388,16 @@ public class Test {
                 job.apply(user);
             }
         }
-        for (int i = 0; i < application.getCompany("Amazon").getJobs().size(); i++) {
-            Job job = application.getCompany("Amazon").getJobs().get(i);
-            application.getCompany("Amazon").getManager().process(job);
-        }
-        for (int i = 0; i < application.getCompany("Google").getJobs().size(); i++) {
-            Job job = application.getCompany("Google").getJobs().get(i);
-            application.getCompany("Google").getManager().process(job);
-        }
+//        for (int i = 0; i < application.getCompany("Amazon").getJobs().size(); i++) {
+//            Job job = application.getCompany("Amazon").getJobs().get(i);
+//            application.getCompany("Amazon").getManager().process(job);
+//        }
+//        for (int i = 0; i < application.getCompany("Google").getJobs().size(); i++) {
+//            Job job = application.getCompany("Google").getJobs().get(i);
+//            application.getCompany("Google").getManager().process(job);
+//        }
 
 //        System.out.println(application.getCompany("Google").getManager());
-        System.out.println(application.getCompany("Google").findDepartament("IT"));
+//        System.out.println(application.getCompany("Google").findDepartament("IT"));
     }
 }

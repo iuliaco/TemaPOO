@@ -70,6 +70,7 @@ public class Manager extends Employee {
         app.getCompany(job.getCompany()).notifyAllObservers(notification);
     }
 
+
     public ArrayList<Request<Job, Consumer>> getRequests() {
         return requests;
     }
