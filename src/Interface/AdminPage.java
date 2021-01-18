@@ -224,5 +224,7 @@ public class AdminPage implements MediatorAdmin{
         mediator.registerComponent(new SalaryText());
         mediator.registerComponent(new JobList(new DefaultListModel()));
         mediator.createGUI();
+
+
     }
 }
