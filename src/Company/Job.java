@@ -111,15 +111,15 @@ public class Job {
     @Override
     public String toString() {
         return "\nJob{" +
-                "job='" + job + '\'' +
-                ", company='" + company + '\'' +
-                ", isOpen=" + isOpen +
-                ", graduationYear=" + graduationYear +
-                ", yearsOfExperience=" + yearsOfExperience +
-                ", meanGPA=" + meanGPA +
-                ", candidates=" + candidates +
-                ", noPositions=" + noPositions +
-                ", salary=" + salary +
+                "\njob='" + job + '\'' +
+                ", \ncompany='" + company + '\'' +
+                ", \nisOpen=" + isOpen +
+                ", \ngraduationYear=" + graduationYear +
+                ", \nyearsOfExperience=" + yearsOfExperience +
+                ", \nmeanGPA=" + meanGPA +
+                ", \ncandidates=" + candidates +
+                ", \nnoPositions=" + noPositions +
+                ", \nsalary=" + salary +
                 '}';
     }
 }

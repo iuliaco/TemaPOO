@@ -15,7 +15,6 @@ import org.json.simple.parser.ParseException;
 
 public class Test {
     public static void main(String[] args) {
-        System.out.println("Macar ti s-a frant inima cand ai teme");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         Application application = Application.getInstance();
         try {
