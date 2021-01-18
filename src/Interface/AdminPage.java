@@ -103,6 +103,11 @@ public class AdminPage implements MediatorAdmin{
 
     @Override
     public void createGUI() {
+        companyList.setCellRenderer(new CompanyListRenderer());
+        jobList.setCellRenderer(new JobListRenderer());
+        departamentList.setCellRenderer(new DepartamentListRenderer());
+        employeeList.setCellRenderer(new EmployeeListRenderer());
+        userList.setCellRenderer(new UserListRenderer());
         JFrame admin = new JFrame("Manager");
         JPanel left = new JPanel();
         JPanel right = new JPanel();
@@ -112,11 +117,13 @@ public class AdminPage implements MediatorAdmin{
         JScrollPane scrollDepartamentList = new JScrollPane(departamentList);
         JScrollPane scrollEmployeeList = new JScrollPane(employeeList);
         JScrollPane scrollJobList = new JScrollPane(jobList);
+        JScrollPane scrollUserText = new JScrollPane(userText);
+        JScrollPane scrollCompanyText = new JScrollPane(companyText);
         left.add(scrollUserList);
         left.add(Box.createRigidArea(new Dimension(0, 5)));
         scrollUserList.setPreferredSize(new Dimension(300,300));
-        left.add(userText);
-        userText.setPreferredSize(new Dimension(300,300));
+        left.add(scrollUserText);
+        scrollUserText.setPreferredSize(new Dimension(300,300));
         left.setSize(400, 700);
         left.setLayout(new BoxLayout(left, BoxLayout.PAGE_AXIS));
         center.add(scrollCompanyList);
@@ -136,12 +143,12 @@ public class AdminPage implements MediatorAdmin{
         JPanel salary = new JPanel();
         salary.add(salaryButton);
         salary.add(salaryText);
-        salaryText.setPreferredSize(new Dimension(75,25));
+        salaryText.setPreferredSize(new Dimension(125,25));
         right.add(salary);
         right.add(Box.createRigidArea(new Dimension(0, 5)));
         scrollDepartamentList.setPreferredSize(new Dimension(300,250));
-        right.add(companyText);
-        companyText.setPreferredSize(new Dimension(300,300));
+        right.add(scrollCompanyText);
+        scrollCompanyText.setPreferredSize(new Dimension(300,300));
         right.setSize(400, 700);
         right.setLayout(new BoxLayout(right, BoxLayout.PAGE_AXIS));
         //

@@ -13,6 +13,7 @@ public abstract class Department {
     }
 
     public abstract double getTotalSalaryBudget();
+    public abstract String getName();
 
     public void add(Employee employee){
         employees.add(employee);

@@ -14,7 +14,9 @@ public class Finance extends Department {
         }
         return total;
     }
-
+    public String getName(){
+        return "Finance";
+    }
     @Override
     public String toString() {
         return "\nFinance" + super.toString();

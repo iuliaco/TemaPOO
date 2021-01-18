@@ -1,20 +1,20 @@
 package Interface;
 
-import Company.Department;
+import Company.Job;
 import People.User;
 
 import javax.swing.*;
 import java.awt.Component;
 
-public class DepartamentListRenderer extends JLabel implements ListCellRenderer {
+public class JobListRenderer   extends JLabel implements ListCellRenderer {
 
-    public DepartamentListRenderer() {
+    public JobListRenderer() {
         setOpaque(true);
     }
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        Department obj = ((Department)value);
+        Job obj = ((Job)value);
 
 
         if (isSelected) {
@@ -24,7 +24,7 @@ public class DepartamentListRenderer extends JLabel implements ListCellRenderer 
             setBackground(list.getBackground());
             setForeground(list.getForeground());
         }
-        setText("Departament: " + obj.getName());
+        setText("Job: " + obj.getJob());
         return this;
     }
 }

@@ -16,7 +16,9 @@ public class Marketing extends Department{
         }
         return total;
     }
-
+    public String getName(){
+        return "Marketing";
+    }
     @Override
     public String toString() {
         return "\nMarketing" + super.toString();

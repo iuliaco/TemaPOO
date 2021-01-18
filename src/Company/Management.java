@@ -10,7 +10,9 @@ public class Management extends Department{
         }
         return total+total*16/100;
     }
-
+    public String getName(){
+        return "Management";
+    }
     @Override
     public String toString() {
         return "\nManagement" + super.toString();

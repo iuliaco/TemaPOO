@@ -10,7 +10,9 @@ public class IT extends Department{
         }
         return total;
     }
-
+    public String getName(){
+        return "IT";
+    }
     @Override
     public String toString() {
         return "\nIT" + super.toString();
