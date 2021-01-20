@@ -1,28 +1,30 @@
 package Interface;
 
-import Application.*;
+import Application.Test;
 import Company.Company;
-import People.*;
+import Company.Notification;
+import People.Application;
+import People.Consumer;
+import People.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ProfilePage implements MediatorProfile, ActionListener {
+public class NotificationsPage  implements MediatorProfile, ActionListener {
     SearchButton searchButton;
     TextBox textBox;
     SearchBar searchBar;
+    NotificationsList notificationsList;
     JFrame profile;
-    public ProfilePage() {
-
-    }
 
     public static void main(String[] args) {
-       MediatorProfile mediator = new ProfilePage();
-       mediator.registerComponent(new SearchButton());
-       mediator.registerComponent(new TextBox());
-       mediator.registerComponent(new SearchBar());
-       mediator.createGUI();
+        MediatorProfile mediator = new NotificationsPage();
+        mediator.registerComponent(new SearchButton());
+        mediator.registerComponent(new NotificationsList(new DefaultListModel()));
+        mediator.registerComponent(new SearchBar());
+        mediator.createGUI();
     }
 
     @Override
@@ -38,6 +40,8 @@ public class ProfilePage implements MediatorProfile, ActionListener {
             case "SearchBar":
                 searchBar = (SearchBar)component;
                 break;
+            case "NotificationsList":
+                notificationsList = (NotificationsList) component;
         }
     }
 
@@ -48,22 +52,23 @@ public class ProfilePage implements MediatorProfile, ActionListener {
         JPanel center = new JPanel();
         JPanel down = new JPanel();
         JButton adminPage = new JButton("Admin Page");
-        JButton notificationsPage = new JButton("Notifications Page");
+        JButton profilePage = new JButton("Profile Page");
         down.add(adminPage);
-        down.add(notificationsPage);
+        down.add(profilePage);
         adminPage.addActionListener(this);
-        notificationsPage.addActionListener(this);
+        profilePage.addActionListener(this);
         up.add(searchBar);
         searchBar.setPreferredSize(new Dimension(100,25));
         up.add(searchButton);
-        textBox.setPreferredSize(new Dimension(400,700));
+        notificationsList.setPreferredSize(new Dimension(400,700));
         up.setSize(800, 300);
         up.setLayout(new FlowLayout());
-        center.add(textBox);
+        center.add(notificationsList);
         profile.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         profile.setLayout(new BorderLayout());
         profile.add(up, BorderLayout.NORTH);
         profile.add(center, BorderLayout.CENTER);
+        profile.add(down, BorderLayout.SOUTH);
         profile.setSize(1000, 900);
         profile.setVisible(true);
         profile.pack();
@@ -72,8 +77,12 @@ public class ProfilePage implements MediatorProfile, ActionListener {
     @Override
     public void displayUser() {
         System.out.println(searchBar.getText()  + "dsaasd");
-        Consumer user = this.searchUser(searchBar.getText());
-        textBox.setText(user.toString());
+        Consumer user = (User)this.searchUser(searchBar.getText());
+        DefaultListModel<Notification> notL = new DefaultListModel();
+        for (Notification notification: ((User) user).getNotifications()) {
+            notL.addElement(notification);
+        }
+        setElementsNotificationsList(notL);
     }
 
     @Override
@@ -83,24 +92,17 @@ public class ProfilePage implements MediatorProfile, ActionListener {
         Application app = Application.getInstance();
         String[] fullName = name.split(" ");
         Consumer user = app.getPerson(fullName[0], fullName[1]);
-        textBox.setText("Yessss");
-        System.out.println(name + " - " + fullName);
         return user;
+    }
+
+    public void setElementsNotificationsList(ListModel list) {
+        this.notificationsList.setModel(list);
+        this.notificationsList.repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
-
-        if(button.getText().equals("Notifications Page")) {
-            MediatorProfile userPage = new NotificationsPage();
-            userPage.registerComponent(new SearchButton());
-            userPage.registerComponent(new NotificationsList(new DefaultListModel()));
-            userPage.registerComponent(new SearchBar());
-            profile.dispose();
-            userPage.createGUI();
-
-        }
         if(button.getText().equals("Admin Page")) {
             Application app = Application.getInstance();
             DefaultListModel<User> users = new DefaultListModel<>();
@@ -124,5 +126,14 @@ public class ProfilePage implements MediatorProfile, ActionListener {
             profile.dispose();
             mediator.createGUI();
         }
+        if(button.getText().equals("Profile Page")) {
+            MediatorProfile userPage = new ProfilePage();
+            userPage.registerComponent(new SearchButton());
+            userPage.registerComponent(new TextBox());
+            userPage.registerComponent(new SearchBar());
+            profile.dispose();
+            userPage.createGUI();
+        }
     }
 }
+

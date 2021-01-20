@@ -65,6 +65,9 @@ public class User extends Consumer implements Observer {
                 "";
     }
 
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
 
     @Override
     public void update(Notification notification) {

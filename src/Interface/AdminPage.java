@@ -6,8 +6,10 @@ import People.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class AdminPage implements MediatorAdmin{
+public class AdminPage implements MediatorAdmin, ActionListener {
     CompanyList companyList;
     CompanyText companyText;
     DepartamentList departamentList;
@@ -17,6 +19,7 @@ public class AdminPage implements MediatorAdmin{
     SalaryText salaryText;
     UserList userList;
     UserText userText;
+    JFrame admin;
 
     @Override
     public void registerComponent(ComponentAdmin component) {
@@ -98,6 +101,7 @@ public class AdminPage implements MediatorAdmin{
             case "UserText":
                 userText = (UserText) component;
                 break;
+
         }
     }
 
@@ -108,7 +112,7 @@ public class AdminPage implements MediatorAdmin{
         departamentList.setCellRenderer(new DepartamentListRenderer());
         employeeList.setCellRenderer(new EmployeeListRenderer());
         userList.setCellRenderer(new UserListRenderer());
-        JFrame admin = new JFrame("Manager");
+        admin = new JFrame("Manager");
         JPanel left = new JPanel();
         JPanel right = new JPanel();
         JPanel center = new JPanel();
@@ -151,12 +155,22 @@ public class AdminPage implements MediatorAdmin{
         scrollCompanyText.setPreferredSize(new Dimension(300,300));
         right.setSize(400, 700);
         right.setLayout(new BoxLayout(right, BoxLayout.PAGE_AXIS));
-        //
+        JPanel down = new JPanel();
+        JButton managerPage = new JButton("Manager Page");
+        JButton profilePage = new JButton("Profile Page");
+        JButton notificationsPage = new JButton("Notifications Page");
+        down.add(managerPage);
+        down.add(notificationsPage);
+        down.add(profilePage);
+        managerPage.addActionListener(this);
+        profilePage.addActionListener(this);
+        notificationsPage.addActionListener(this);
         admin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         admin.setLayout(new BorderLayout());
         admin.add(left, BorderLayout.WEST);
         admin.add(center, BorderLayout.CENTER);
         admin.add(right, BorderLayout.EAST);
+        admin.add(down, BorderLayout.SOUTH);
         admin.setSize(1000, 900);
         admin.setVisible(true);
         admin.pack();
@@ -226,5 +240,42 @@ public class AdminPage implements MediatorAdmin{
         mediator.createGUI();
 
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        DefaultListModel<Request<Job, Consumer>> requests = new DefaultListModel<>();
+        JButton button = (JButton) e.getSource();
+        if(button.getText().equals("Manager Page")) {
+            MediatorManager manager = new ManagerPage();
+            Application app = Application.getInstance();
+            String company = ((Company) companyList.getSelectedValue()).getName();
+            if(company == null)
+                company = "Google";
+            for (Request req: app.getCompany(company).getManager().getRequests()) {
+                requests.addElement(req);
+            }
+            manager.registerComponent(new HireButton());
+            manager.registerComponent(new RequestsText());
+            manager.registerComponent(new RequestsList(requests));
+            admin.dispose();
+            manager.createGUI();
+        }
+        if(button.getText().equals("Profile Page")) {
+            MediatorProfile userPage = new ProfilePage();
+            userPage.registerComponent(new SearchButton());
+            userPage.registerComponent(new TextBox());
+            userPage.registerComponent(new SearchBar());
+            admin.dispose();
+            userPage.createGUI();
+        }
+        if(button.getText().equals("Notifications Page")) {
+            MediatorProfile userPage = new NotificationsPage();
+            userPage.registerComponent(new SearchButton());
+            userPage.registerComponent(new NotificationsList(new DefaultListModel()));
+            userPage.registerComponent(new SearchBar());
+            admin.dispose();
+            userPage.createGUI();
+        }
     }
 }
