@@ -72,7 +72,6 @@ public class ProfilePage implements MediatorProfile, ActionListener {
 
     @Override
     public void displayUser() {
-        System.out.println(searchBar.getText()  + "dsaasd");
         Consumer user = this.searchUser(searchBar.getText());
         if(user == null)
             textBox.setText("Nu am putut gasi acest utilizator");

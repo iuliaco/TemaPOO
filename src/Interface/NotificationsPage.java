@@ -76,13 +76,11 @@ public class NotificationsPage  implements MediatorProfile, ActionListener {
 
     @Override
     public void displayUser() {
-        System.out.println(searchBar.getText()  + "dsaasd");
         Consumer user = (User)this.searchUser(searchBar.getText());
 
         if(user == null)
             setElementsNotificationsList(new DefaultListModel());
         else {
-            System.out.println("s a gasit");
             DefaultListModel<Notification> notL = new DefaultListModel();
             for (Notification notification: ((User) user).getNotifications()) {
                 notL.addElement(notification);
