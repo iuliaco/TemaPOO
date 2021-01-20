@@ -112,7 +112,7 @@ public class AdminPage implements MediatorAdmin, ActionListener {
         departamentList.setCellRenderer(new DepartamentListRenderer());
         employeeList.setCellRenderer(new EmployeeListRenderer());
         userList.setCellRenderer(new UserListRenderer());
-        admin = new JFrame("Manager");
+        admin = new JFrame("Admin");
         JPanel left = new JPanel();
         JPanel right = new JPanel();
         JPanel center = new JPanel();
@@ -249,9 +249,12 @@ public class AdminPage implements MediatorAdmin, ActionListener {
         if(button.getText().equals("Manager Page")) {
             MediatorManager manager = new ManagerPage();
             Application app = Application.getInstance();
-            String company = ((Company) companyList.getSelectedValue()).getName();
-            if(company == null)
+            Company com = (Company) companyList.getSelectedValue();
+            String company;
+            if(com == null)
                 company = "Google";
+            else
+                company = com.getName();
             for (Request req: app.getCompany(company).getManager().getRequests()) {
                 requests.addElement(req);
             }

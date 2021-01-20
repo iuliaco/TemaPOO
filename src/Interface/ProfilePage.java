@@ -64,6 +64,7 @@ public class ProfilePage implements MediatorProfile, ActionListener {
         profile.setLayout(new BorderLayout());
         profile.add(up, BorderLayout.NORTH);
         profile.add(center, BorderLayout.CENTER);
+        profile.add(down, BorderLayout.SOUTH);
         profile.setSize(1000, 900);
         profile.setVisible(true);
         profile.pack();
@@ -73,14 +74,20 @@ public class ProfilePage implements MediatorProfile, ActionListener {
     public void displayUser() {
         System.out.println(searchBar.getText()  + "dsaasd");
         Consumer user = this.searchUser(searchBar.getText());
-        textBox.setText(user.toString());
+        if(user == null)
+            textBox.setText("Nu am putut gasi acest utilizator");
+        else
+            textBox.setText(user.toString());
     }
 
     @Override
     public Consumer searchUser(String name) {
         String[] args = new String[0];
-        Test.main(args);
+
         Application app = Application.getInstance();
+        if(app.users.size() == 0) {
+            Test.main(args);
+        }
         String[] fullName = name.split(" ");
         Consumer user = app.getPerson(fullName[0], fullName[1]);
         textBox.setText("Yessss");

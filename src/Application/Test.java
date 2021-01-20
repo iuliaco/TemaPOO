@@ -380,7 +380,7 @@ public class Test {
         System.out.println(R4.getDegreeInFriendship(U1));
         System.out.println(R4.getDegreeInFriendship(U1));
 
-//        System.out.println(U1.getAcquaintances());
+        System.out.println(U1.getAcquaintances());
         for (User user: application.getUsers()) {
             System.out.println("Isi cauta job" + user.resume.getInfo().getLastName());
             for (Job job : application.getJobs(user.getCompanies())) {
@@ -396,7 +396,7 @@ public class Test {
 //            application.getCompany("Google").getManager().process(job);
 //        }
 
-//        System.out.println(application.getCompany("Google").getManager());
-//        System.out.println(application.getCompany("Google").findDepartament("IT"));
+        System.out.println(application.getCompany("Google").getManager());
+        System.out.println(application.getCompany("Google").findDepartament("IT"));
     }
 }

@@ -47,7 +47,7 @@ public class NotificationsPage  implements MediatorProfile, ActionListener {
 
     @Override
     public void createGUI() {
-        profile = new JFrame("Profile");
+        profile = new JFrame("Notifications");
         JPanel up = new JPanel();
         JPanel center = new JPanel();
         JPanel down = new JPanel();
@@ -60,7 +60,7 @@ public class NotificationsPage  implements MediatorProfile, ActionListener {
         up.add(searchBar);
         searchBar.setPreferredSize(new Dimension(100,25));
         up.add(searchButton);
-        notificationsList.setPreferredSize(new Dimension(400,700));
+        notificationsList.setPreferredSize(new Dimension(600,700));
         up.setSize(800, 300);
         up.setLayout(new FlowLayout());
         center.add(notificationsList);
@@ -78,18 +78,26 @@ public class NotificationsPage  implements MediatorProfile, ActionListener {
     public void displayUser() {
         System.out.println(searchBar.getText()  + "dsaasd");
         Consumer user = (User)this.searchUser(searchBar.getText());
-        DefaultListModel<Notification> notL = new DefaultListModel();
-        for (Notification notification: ((User) user).getNotifications()) {
-            notL.addElement(notification);
+
+        if(user == null)
+            setElementsNotificationsList(new DefaultListModel());
+        else {
+            System.out.println("s a gasit");
+            DefaultListModel<Notification> notL = new DefaultListModel();
+            for (Notification notification: ((User) user).getNotifications()) {
+                notL.addElement(notification);
+            }
+            setElementsNotificationsList(notL);
         }
-        setElementsNotificationsList(notL);
     }
 
     @Override
     public Consumer searchUser(String name) {
         String[] args = new String[0];
-        Test.main(args);
         Application app = Application.getInstance();
+        if(app.users.size() == 0) {
+            Test.main(args);
+        }
         String[] fullName = name.split(" ");
         Consumer user = app.getPerson(fullName[0], fullName[1]);
         return user;

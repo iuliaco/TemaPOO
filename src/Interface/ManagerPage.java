@@ -106,6 +106,9 @@ public class ManagerPage implements MediatorManager, ActionListener {
                 comp.removeObserver(user);
             }
             requestsText.setText(jobDept.toString());
+            if(job.getNoPositions() == 0) {
+                app.getCompany(company.getName()).getManager().process(job);
+            }
         } else {
             requestsText.setText("A aparut o eroare la angajare.");
         }

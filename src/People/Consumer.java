@@ -154,7 +154,7 @@ public abstract class Consumer {
         friends = new ArrayList<>();
         list.put(this, 0);
         friends.add(this);
-        for (int i = 0; i < friends.size(); i++) {
+        for (int i  = 0; i < friends.size(); i++) {
             Consumer friend = friends.get(i);
             for (Consumer friendFriend: friend.acquaintances) {
                 if(friendFriend.equals(consumer)) {
