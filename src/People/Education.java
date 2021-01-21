@@ -85,6 +85,7 @@ public class Education implements Comparable<Education> {
                 "Data de inceput:" + startDate + '\n' +
                 "Data de sfarsit:" + endDate + '\n' +
                 "Numele institutiei:" + institutionName + '\n' +
-                "Nivelul de educatie:" + educationLevel + '\n';
+                "Nivelul de educatie:" + educationLevel + '\n' +
+                "Media:" + meanGPA + '\n';
     }
 }
