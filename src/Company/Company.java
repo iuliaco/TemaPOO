@@ -125,6 +125,8 @@ public class Company implements Subject{
         return false;
     }
 
+    // fac distanta dintre toti recruiterii
+    // si userul meu
     public Recruiter getRecruiter(User user) {
         int max = 0;
         Recruiter finalR = null;
@@ -204,6 +206,7 @@ public class Company implements Subject{
         observerList.remove(c);
     }
 
+    // iterez prin observeri si dau update
     @Override
     public void notifyAllObservers(Notification notification) {
         for (Iterator<Observer> it = observerList.iterator(); it.hasNext();) {
@@ -211,7 +214,7 @@ public class Company implements Subject{
             o.update(notification);
         }
     }
-
+    // trimit notificare la un singur usr
     @Override
     public void notifyObserver(User user, Notification notification) {
         if(observerList.contains(user)) {

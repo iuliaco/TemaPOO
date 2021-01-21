@@ -15,26 +15,33 @@ import org.json.simple.parser.ParseException;
 
 public class Test {
     public static void main(String[] args) {
+        // patternul de data
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         Application application = Application.getInstance();
         try {
+            // deschid fisierul de companii
             File myObj = new File("companies.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
+                // iau numele companiei  si creez obiectul
                 Company company = new Company(data);
+                // il adaug in aplicatie
                 application.add(company);
             }
+            // inchid fisierul
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
         try {
+            // deschid fisierul de departamente
             File myObj = new File("departaments.txt");
             DepartmentsFactory factory = new DepartmentsFactory();
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
+                // iau numele fiecarui departament si fac factory sa creeez departamentele
                 String data = myReader.nextLine();
                 for (Company company: application.getCompanies()) {
                     company.add(factory.createDepartament(data));
@@ -47,10 +54,13 @@ public class Test {
         }
 
         try {
+            // deschid fisierul de consumeri
             Reader myObj = new FileReader("consumers.json");
             JSONParser parser = new JSONParser();
             JSONObject obj;
             obj = (JSONObject) parser.parse(myObj);
+            // iau angajatii
+            // iau fiecare trait
             JSONArray employees = (JSONArray) obj.get("employees");
             for (int i = 0; i < employees.size(); i++) {
                 JSONObject employeeJSON = (JSONObject) employees.get(i);
@@ -62,6 +72,7 @@ public class Test {
                 String currCompany, department;
                 currCompany = null;
                 department = null;
+                // adaug educatiile si experientele
                 SortedArrayListEducation educations = new SortedArrayListEducation();
                 SortedArrayListExperience experiences = new SortedArrayListExperience();
                 for (int j = 0; j < employeeEducation.size(); j++) {
@@ -309,7 +320,8 @@ public class Test {
             }
             System.out.println(rectuiters.size());
 
-            //sfarsit manager
+            // sfarsit manager
+            // throw de erori
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -323,9 +335,11 @@ public class Test {
         }
 
         try {
+            // deschid fisierul de joburi
             File myObj = new File("jobs.txt");
             Scanner myReader = new Scanner(myObj);
             for (int i = 0; i < 4; i++) {
+                // iau datele de pe linii si le bag
                 String jobName = myReader.nextLine();
                 String jobCompany = myReader.nextLine();
                 boolean isOpen = Boolean.valueOf(myReader.nextLine());
@@ -375,6 +389,7 @@ public class Test {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        // fac testare de gradul de prietenii
         Consumer U1 = application.users.get(1);
         Consumer R4= application.getPerson("Jonie", "Phillip");
         System.out.println(R4.getDegreeInFriendship(U1));

@@ -18,6 +18,7 @@ public class Manager extends Employee {
         requests.add(request);
     }
     public void process(Job job) {
+        // fac o lista separata cu requesturile jobului
         List<Request<Job, Consumer>> candidates = new ArrayList<>();
         for (int i = 0 ; i < requests.size(); i++) {
             Request req = requests.get(i);
@@ -27,6 +28,7 @@ public class Manager extends Employee {
                 i--;
             }
         }
+        // le sortez dupa scor
         Collections.sort(candidates, new Comparator<Request<Job, Consumer>>() {
             @Override
             public int compare(Request<Job, Consumer> o1, Request<Job, Consumer> o2) {
@@ -43,6 +45,7 @@ public class Manager extends Employee {
                 break;
             }
         }
+        // iau pe rand in limita locurilor si angajez
         for (Request<Job, Consumer> candidate: candidates) {
             if(app.getUsers().contains(candidate.getValue1()) && noPositions > 0) {
               User user = (User) candidate.getValue1();
@@ -59,6 +62,7 @@ public class Manager extends Employee {
               }
               noPositions--;
             }
+            // cand termin trimit la restul notificare ca au fost respinsi
             if(noPositions == 0) {
                 Notification notif = new Notification("Ai fost respins de la jobul de " + job.getJob(), job.getCompany());
                 User user = (User) candidate.getValue1();

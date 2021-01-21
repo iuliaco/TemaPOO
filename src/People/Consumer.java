@@ -148,18 +148,21 @@ public abstract class Consumer {
     }
 
     public int getDegreeInFriendship(Consumer consumer) {
+        // hasmap in care stochez distanta
         HashMap<Consumer, Integer> list;
+        // arraylist in care stochez oamenii prin care trec
         ArrayList<Consumer> friends;
         list = new HashMap<>();
         friends = new ArrayList<>();
         list.put(this, 0);
         friends.add(this);
+        // iterez prin lista de prieteni
         for (int i  = 0; i < friends.size(); i++) {
             Consumer friend = friends.get(i);
             for (Consumer friendFriend: friend.acquaintances) {
+                // cand il gasesc returnez distanta
                 if(friendFriend.equals(consumer)) {
                     int pos = list.get(friend);
-                    System.out.println("Found");
                     return pos + 1;
                 }
                 if(!friends.contains(friendFriend)) {
